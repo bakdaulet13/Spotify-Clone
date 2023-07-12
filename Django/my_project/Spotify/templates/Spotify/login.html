@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<style>
+             body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #222;
+            margin: 0;
+            padding: 0;
+        }
+         h2 {
+            font-size: 25px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        h1 {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+        h3{
+        	color: white;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: black;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+            background-color: black;
+            border: 1px solid white;
+            border-radius: 4px;
+            box-sizing: border-box;
+
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #1db954;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        p.error {
+            color: #d9534f;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        a {
+            color: #1db954;
+            text-decoration: none;
+
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        select option[value="777"] {
+            color: #ccc;
+        }
+       img.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50px;
+  height: auto;
+}
+  img.fcb {
+
+  margin-left: auto;
+  margin-right: auto;
+  width: 25px;
+  height: auto;
+}
+ img.google {
+
+  margin-left: auto;
+  margin-right: auto;
+  width: 25px;
+  height: auto;
+}
+
+.facebook-btn {
+  background-color: black;
+  border-radius: 25px;
+  color: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+  height: auto;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid white;
+  padding: 10px;
+}
+
+.google-button{
+	  background-color: black;
+  border-radius: 25px;
+  color: white;
+   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+  height: auto;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid white;
+  padding: 10px;
+}
+</style>
+<body>
+<header>
+        <img class="logo" src="https://p.kindpng.com/picc/s/202-2023215_spotify-round-logo-png-transparent-png.png" alt="Logo">
+    </header>
+    <h2>Войти в Spotify</h2>
+    <div>
+  <a href="#" class="facebook-btn">
+
+    <img class="fcb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Facebook_logo_%28square%29.png/600px-Facebook_logo_%28square%29.png" alt="Facebook Logo">
+    Войти через Facebook</a></div>
+
+    <br>
+<div>
+  <a href="#" class="google-button">
+    <img class="google" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo">
+    Войти через Google</a>
+
+</div>
+</br>
+<form action="{{url}}/login" method="post">
+    {% csrf_token %}
+    <p  style="color: white">{{error}}</p>
+
+    <div>
+        <span style="color: white">Электронная почта или имя пользователя</span>
+        <input type="text" id="login-username" name="username" placeholder="Электронная почта или имя пользователя">
+    </div>
+    <div>
+        <span style="color: white">Пароль</span>
+        <input type="password" id="login-password" name="password" placeholder="Пароль">
+    </div>
+    <div>
+        <button type="submit">Войти</button>
+    </div>
+    <div><a href="#">Забыли пароль</a></div>
+    <hr>
+    <div style="color: white">Нет аккаунта? <a href="{{url}}/registration">Регистрация в Spotify</a></div>
+</form>
+</body>
+</html>

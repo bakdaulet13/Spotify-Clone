@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+
+	<!-- Meta tags -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=0.8">
+
+	<!-- Style tags -->
+	<link rel="icon" type="image/x-icon" href="/media/photos/Spotify-logo-2048x1152%20(1).png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+	<style type="text/css">
+		* {
+			font-family: 'Montserrat', sans-serif;
+			margin:0;
+			color: white;
+		}
+
+		body {
+			margin:0;
+		}
+
+		.navbar {
+			background-color: black;
+			height: 100vh;
+			width: 24%;
+			position: fixed;
+			font-weight: 700;
+		}
+
+		.navbar ul {
+			list-style: none;
+			text-align: left;
+			margin: 8px;
+			padding: 5px;
+			line-height: 32px;
+			font-size: 14px;
+            background-color: #131212;
+            border-radius: 5px;
+		}
+
+        .navbar ul li {
+            padding: 8px 15px;
+        }
+
+        .navbar ul input {
+            margin-left: 15px;
+            background-color: #37393a;
+            border: none;
+            outline: none;
+            padding: 5px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+		.navbar i {
+			opacity: 0.5;
+			font-size: 20px;
+			margin-right: 15px;
+			transition: 0.5s;
+		}
+
+		.navbar a {
+			color: grey;
+			text-decoration: none;
+			transition: 0.5s;
+		}
+
+		.navbar a:hover  {
+			color: white;
+		}
+
+		.navbar a:hover i {
+			opacity: 1;
+		}
+
+		.button button {
+			background-color: black;
+			color: white;
+			padding: 5px 10px;
+			font-size: 15px;
+			border: 1px grey solid;
+			border-radius: 20px;
+			cursor: pointer;
+		}
+
+		.body {
+			width: 76%;
+			margin-left: 24%;
+			min-height: 100vh;
+			background-color: #131212;
+		}
+
+		.nav {
+			width: 100%;
+			height: 65px;
+			background-color: #131313;
+			position: fixed;
+			display: flex;
+			align-items: center;
+		}
+
+		.nav-btn {
+			font-size: 14px;
+			font-weight: 700;
+			padding: 8px 17px;
+			position: fixed;
+			border-radius: 50px;
+			cursor: pointer;
+		}
+
+		.nav-btn:hover {
+			font-size: 15px;
+			padding: 9px 18px;
+		}
+
+		#profile {
+			color: white;
+			background-color: #131313;
+			border: none;
+			margin-left: 900px;
+		}
+
+		#log {
+			margin-left: 1000px;
+			color: black;
+		}
+
+		#profile:hover {
+			margin-left: 898px;
+		}
+
+		#log:hover {
+			margin-left: 998px;
+		}
+
+		.content {
+            padding-top: 70px;
+            border-radius: 10px;
+        }
+
+		.footer {
+      height: 150px;
+      padding:0 30px;
+    }
+
+        .footer-list {
+            margin-top: 40px;
+        }
+
+        .footer-list a {
+            margin-right: 10px;
+            text-decoration: none;
+            font-size: 13px;
+            opacity: 0.5;
+        }
+
+        .footer-list a:hover {
+            opacity: 1;
+        }
+
+        .footer-list span {
+            opacity: 0.5;
+            font-size: 13px;
+            float: right;
+        }
+
+        .fa-plus:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        #library:hover {
+            color: grey;
+            cursor: default;
+        }
+
+        .playlists-nav {
+            line-height: 23px;
+        }
+
+        .playlists-nav h2 {
+            font-size: 14px;
+        }
+
+        .playlists-nav p {
+            font-size: 13px;
+            font-weight: 400;
+            opacity: 0.7;
+        }
+
+        .playlists-nav:hover {
+            background-color: #1a1a1a;
+            cursor: pointer;
+        }
+
+        .list-library-nav {
+            max-height: 80%;
+            overflow-y:scroll;
+            scrollbar-track-color: dimgrey;
+        }
+
+        .playlists-nav img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .list-library-nav::-webkit-scrollbar {
+            width: 13px;
+        }
+
+        .list-library-nav::-webkit-scrollbar-thumb {
+            background-color: hsla(0,0%,100%,.3);
+        }
+	</style>
+    {% block style %}
+    {% endblock %}
+	<!-- Kit for icons -->
+	<script src="https://kit.fontawesome.com/8cc093b5bf.js" crossorigin="anonymous"></script>
+
+	<!-- Title -->
+	<title>Spotify</title>
+</head>
+<body>
+
+	<!-- Navigation bar -->
+	<div class="navbar">
+		<ul>
+			<li><a href="{{url}}/important"><i class="fa-solid fa-house" style="color: #ffffff;"></i>Home</a></li>
+			<li><a href="{{url}}/search"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>Search</a></li>
+		</ul>
+        <ul class="list-library-nav">
+			<li>
+                <a id="library" href="#"><i class="fa-solid fa-album-collection" style="color: #ffffff;"></i>Your Library</a>
+                <a href="{{url}}/add_pl"><button style="background-color: #131212; border: none; padding: 0; float: right"><i class="fa-regular fa-plus" style="color: #ffffff; margin: 0"></i></button></a>
+            </li>
+            <input type="text" placeholder="Search in Your Library">
+			<li class="playlists-nav" style="margin-top: 10px;">
+                <div
+                        style="
+                        background: linear-gradient(135deg, rgba(55,0,255,1) 0%, rgba(140,93,241,1) 33%, rgba(162,195,211,1) 70%, rgba(228,239,250,1) 100%);
+                        width: 45px;
+                        height: 45px;
+                        border-radius: 4px;
+                        color: white;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-right:10px;
+                        float: left"
+                        ><span style="font-size: 15px">&#10084;</span></div>
+                <h2><a href="{{url}}/liked_songs">Liked Songs</a></h2>
+                <p>{{ cnt }} songs</p>
+            </li>
+			{% for p in pls %}
+            <li class="playlists-nav" style="margin-top: 10px;">
+                <div style="width: 45px;height: 45px;border-radius: 4px;margin-right:10px;float: left">
+                    <img src="https://getwallpapers.com/wallpaper/full/2/0/9/1445970-wallpaper-scenic-pictures-3360x2108-hd.jpg">
+
+                </div>
+                <h2 href="#">{{p.name}}</h2>
+                <p>{{ p.id }} songs</p>
+            </li>
+			{% endfor %}
+        </ul>
+	</div>
+
+	<!-- The rest of the body -->
+	<div class="body">
+		<div class="nav">
+			<button id="profile" class="nav-btn"><a href="{{url}}/edit"><i class="fa-regular fa-user" style="color: #ffffff;"></i></a></button>
+			<button id="log" class="nav-btn">Log out</button>
+		</div>	
+		<div class="content">
+			{% block content %}
+			{% endblock %}
+		</div>	
+		<div class="footer">
+      		<hr style="border: none; border-bottom: 1px #343434 solid;">
+            <div class="footer-list">
+                <a href="https://www.spotify.com/kz-en/legal/end-user-agreement/">Legal</a>
+                <a href="https://www.spotify.com/kz-en/privacy">Privacy Center</a>
+                <a href="https://www.spotify.com/kz-en/legal/privacy-policy/">Privacy Policy</a>
+                <a href="https://www.spotify.com/kz-en/legal/cookies-policy/">Cookies</a>
+                <a href="https://www.spotify.com/kz-en/legal/privacy-policy/#s3">About Ads</a>
+                <span>© 2023 Spotify AB</span>
+            </div>
+		</div>
+	</div>
+</body>
+</html>

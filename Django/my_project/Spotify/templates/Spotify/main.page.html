@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+{% block style %}
+<style type="text/css">
+
+    .content {
+        min-height: 85vh;
+    }
+  .global {
+        line-height: 30px;
+    }
+
+    .global-cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+    }
+
+    .global-cards a {
+        cursor: pointer;
+    }
+
+    .global h1 {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .global h2 {
+        font-size: 14px;
+    }
+
+    .global p {
+        font-size: 13px;
+
+    }
+
+    .card {
+        background-color: #2E3031;
+        width: 150px;
+        height: 230px;
+        padding: 15px;
+        border-radius: 7px;
+    }
+
+    .image {
+        width: 150px;
+        height: 150px;
+        margin: auto;
+        margin-bottom: 7px;
+    }
+
+    .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+    .body {
+        height: auto;
+    }
+
+    .playList {
+        background: linear-gradient(180deg, rgba(108,120,135,1) 0%, rgba(80,86,93,1) 20%, rgba(28,29,30,1) 100%);
+    }
+
+    .title {
+        background: linear-gradient(180deg, rgba(178,198,222,1) 0%, rgba(124,142,164,1) 37%, rgba(115,133,154,1) 61%, rgba(108,120,135,1) 100%);
+        display: flex;
+        padding: 20px 30px;
+    }
+
+    .title-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin-left: 30px;
+    }
+
+    .img {
+        width: 220px;
+        height: 220px;
+    }
+
+    .img img {
+        width: 100%;
+        height: 100%;
+        box-shadow: 0px 0px 50px 10px rgba(0, 0, 0, 0.27);
+        object-fit: cover;
+    }
+
+    .title-text h1 {
+        font-size: 80px;
+        font-weight: 800;
+    }
+
+    .title-text p {
+        opacity: 0.7;
+        font-size: 12px;
+    }
+
+    .middle-musics {
+        background: linear-gradient(180deg, rgba(75,85,97,1) 0%, rgba(51,58,67,1) 25%, rgba(28,29,30,1) 100%);
+    }
+
+    .start_btn button {
+        color: black;
+        background-color: #2acc63;
+        border: none;
+        border-radius: 50%;
+        width: 55px;
+        height: 55px;
+        font-size: 27px;
+        margin: 20px 0 20px 30px;
+    }
+
+    .middle {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .heart {
+        font-size: 50px;
+        margin-left: 25px;
+    }
+
+    .ush_tochka {
+        margin-left: 25px;
+        font-size: 10px;
+    }
+
+    .musics {
+        padding: 30px;
+    }
+
+    .list {
+        display: flex;
+        font-size: 13px;
+        align-items: center;
+    }
+
+    .list:hover {
+        cursor: default;
+    }
+
+    .list-1 {
+        width: 40px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 17px;
+    }
+
+    .list-2 {
+        width: 450px;
+    }
+
+    .list-3{
+        width: 330px;
+    }
+
+    .list-4 {
+        width: 250px;
+    }
+
+    .list-5 {
+        width: 80px;
+        text-align: center;
+    }
+
+    .music-img img {
+        width: 40px;
+        height: 40px;
+        float: left;
+        margin-right: 10px;
+        margin-top: 5px;
+    }
+
+    .music {
+        border-radius: 4px;
+        height: 60px;
+    }
+
+    .music:hover {
+        background-color: rgba(255, 255, 255, 0.09);
+    }
+
+    .heart {
+        width: 50px;
+    }
+
+    .heart a {
+        visibility: hidden;
+    }
+
+    .music:hover .heart a {
+        visibility: visible;
+    }
+
+    .heart a:hover {
+        opacity: 1;
+    }
+
+    .list-1 a {
+        visibility: hidden;
+    }
+
+    .music:hover .list-1 a {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .music:hover .list-1 span {
+        visibility: hidden;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="global">
+            {% if temp == 1 %}
+            <h1>Фокус</h1>
+            <br>
+            <div class="global-cards">
+                {% for p in pl %}
+                <a style="text-decoration: none"  href="{{url}}/pl/{{p.id}}"} >
+                    <div class="card">
+                        <div class="image"><img src="{{p.image.url}}"></div>
+                        <h2>{{p.name}}</h2>
+                        <p>{{p.short_description}}</p>
+                    </div>
+                </a>
+                {% endfor %}
+                </div>
+            {% else %}
+                 <div class="playList">
+        <div class="title">
+            <div class="img"><img src="/media/photos/music/2-200x150.webp"></div>
+            <div class="title-text">
+                <span style="font-size: 12px;font-weight: 600">Playlist</span>
+                <h1>Playlist Name</h1>
+                <p>Description</p>
+                <div class="subtitle">
+                    <span>Spotify</span>
+                    <span>&#9679;</span>
+                    <span>{{count_likes}} likes</span>
+                    <span>&#9679;</span>
+                    <span>{{count_musics}} tracks, </span>
+                    {% if tt == 0 %}
+                        <span>{{count_duration}} мин.</span>
+                    {% else %}
+                        <span>{{count_duration}} ч.</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="middle-musics">
+            <div class="middle">
+                <div class="start_btn"><button> &#9654;</button></div>
+                <div class="heart">&#9825;</div>
+                <div class="ush_tochka">&#9679;&nbsp;&#9679;&nbsp;&#9679;</div>
+            </div>
+            <div class="musics">
+                <div class="list">
+                    <div class="list-1" style="opacity: 0.7;">#</div>
+                    <div class="list-2" style="opacity: 0.7;">Title</div>
+                    <div class="list-3" style="opacity: 0.7;">Album</div>
+                    <div class="list-4" style="opacity: 0.7;">Date added</div>
+                    <div class="heart" style="opacity: 0.7;"></div>
+                    <div class="list-5" style="opacity: 0.7;">&#128338;</div>
+                </div>
+                <hr style="border:0; border-bottom: 1px solid #3F3F3F; margin: 7px 0">
+                {% for m in musics %}
+                    <div class="music list">
+                        <div class="list-1" style="opacity: 0.7;"><span>{{m.id}}</span><a>&#9654;</a></div>
+                        <div class="list-2">
+                            <div class="music-img" ><img src="{{m.music_image.url}}"></div>
+                            <p style="font-weight: 600; margin-top: -2px">{{m.name}}</p>
+                            <p style="opacity: 0.7; margin-top: -7px">{{m.artist}}</p>
+                        </div>
+                        <div class="list-3" style="opacity: 0.7;">{{m.album_id}}</div>
+                        <div class="list-4" style="opacity: 0.7;">{{m.day}}</div>
+                            <div class="heart"><a href="{{url}}/playlists/{{m.id}}" style="text-decoration: none; opacity: 0.7; cursor: pointer"><button style="flex-shrink: 0;
+                                                                color: #1ed760;
+                                                                background: transparent;
+                                                                border: 0;
+                                                                display: flex;
+                                                                padding: 0;"><svg role="img" style="fill: currentcolor" height="15" width="15" viewBox="0 0 24 24"> <path style="vector-effect: non-scaling-stroke;" d="M5.21 1.57a6.757 6.757 0 0 1 6.708 1.545.124.124 0 0 0 .165 0 6.741 6.741 0 0 1 5.715-1.78l.004.001a6.802 6.802 0 0 1 5.571 5.376v.003a6.689 6.689 0 0 1-1.49 5.655l-7.954 9.48a2.518 2.518 0 0 1-3.857 0L2.12 12.37A6.683 6.683 0 0 1 .627 6.714 6.757 6.757 0 0 1 5.21 1.57zm3.12 1.803a4.757 4.757 0 0 0-5.74 3.725l-.001.002a4.684 4.684 0 0 0 1.049 3.969l.009.01 7.958 9.485a.518.518 0 0 0 .79 0l7.968-9.495a4.688 4.688 0 0 0 1.049-3.965 4.803 4.803 0 0 0-3.931-3.794 4.74 4.74 0 0 0-4.023 1.256l-.008.008a2.123 2.123 0 0 1-2.9 0l-.007-.007a4.757 4.757 0 0 0-2.214-1.194z"></path> </svg></button></a></div>
+
+                        <div class="list-5">{{m.get_length}}:{{m.get_second}}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+            </div>
+{% endif %}
+{% endblock %}

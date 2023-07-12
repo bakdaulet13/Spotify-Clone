@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+
+	<!-- Meta tags -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=0.8">
+
+	<!-- Style tags -->
+	<link rel="icon" type="image/x-icon" href="/media/photos/Spotify-logo-2048x1152%20(1).png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+	<style type="text/css">
+		* {
+			font-family: 'Montserrat', sans-serif;
+			margin:0;
+			color: white;
+		}
+
+		body {
+			margin:0;
+		}
+
+		.navbar {
+			background-color: black;
+			height: 100vh;
+			width: 15%;
+			position: fixed;
+			font-weight: 700;
+		}
+
+		.navbar img {
+			width: 130px;
+			margin: 7px 0 20px 0;
+		}
+
+		.navbar ul {
+			list-style: none;
+			text-align: left;
+			margin: 25px;
+			padding: 0;
+			line-height: 32px;
+			font-size: 14px;
+		}
+
+		.navbar i {
+			opacity: 0.5;
+			font-size: 20px;
+			margin-right: 15px;
+			transition: 0.5s;
+		}
+
+		.navbar a {
+			color: grey;
+			text-decoration: none;
+			transition: 0.5s;
+		}
+
+		.navbar a:hover  {
+			color: white;
+		}
+
+		.navbar a:hover i {
+			opacity: 1;
+		}
+
+		.button {
+			position: relative;
+			display: inline-block;
+		}
+
+		.button button {
+			background-color: black;
+			color: white;
+			padding: 5px 10px;
+			font-size: 15px;
+			border: 1px grey solid;
+			border-radius: 20px;
+			cursor: pointer;
+		}
+
+		.body {
+			width: 85%;
+			margin-left: 15%;
+			height: 100vh;
+			background-color: #1C1D1E;
+		}
+
+		.nav {
+			width: 100%;
+			height: 65px;
+			background-color: #131313;
+			position: fixed;
+			display: flex;
+			align-items: center;
+		}
+
+		.nav-btn {
+			font-size: 15px;
+			font-weight: 700;
+			padding: 15px 30px;
+			position: fixed;
+			border-radius: 50px;
+			cursor: pointer;
+		}
+
+		.nav-btn:hover {
+			font-size: 16px;
+			padding: 16px 31px;
+		}
+
+		#reg {
+			color: white;
+			background-color: #131313;
+			border: none;
+			margin-left: 980px;
+		}
+
+		#log {
+			margin-left: 1150px;
+			color: black;
+		}
+
+		#reg:hover {
+			margin-left: 978px;
+		}
+
+		#log:hover {
+			margin-left: 1148px;
+		}
+
+		.content {
+			padding: 40px;
+			padding-top: 100px;
+		}
+
+		.footer {	
+			height: 150px;
+			background-color: #1C1D1E;
+			padding:0 30px;
+		}
+
+	</style>
+    {% block style %}
+    {% endblock %}
+	<!-- Kit for icons -->
+	<script src="https://kit.fontawesome.com/8cc093b5bf.js" crossorigin="anonymous"></script>
+
+	<!-- Title -->
+	<title>Spotify</title>
+</head>
+<body>
+
+	<!-- Navigation bar -->
+	<div class="navbar">
+		<ul>
+			<li><a href="#"><img src="/media/photos/Spotify_Logo_RGB_White.png" alt="Spotify logo"></a></li>
+			<li><a href="{{url}}/main/"><i class="fa-solid fa-house" style="color: #ffffff;"></i>Home</a></li>
+			<li><a href="#"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>Search</a></li>
+			<li><a href="#"><i class="fa-solid fa-album-collection" style="color: #ffffff;"></i>Your Library</a></li>
+			<br>
+			<li><a href="#"><i class="fa-solid fa-square-plus" style="color: #ffffff;"></i>Create Playlist</a></li>
+			<li><a href="#"><i class="fa-solid fa-square-heart" style="color: #ffffff;"></i>Liked Songs</a></li>
+
+		</ul>
+
+		<div style="height: 180px;"></div>
+
+		<ul class="bottom-header">
+			<li><a target="_blank" href="https://www.spotify.com/kz-ru/legal/cookies-policy/" style="font-size: 10px; font-weight: 600;">Cookie files</a></li>
+			<br>
+			<li>
+				<div class="button">
+					<button><span class="fa-light fa-globe" style="color: #ffffff;"></span>English</button>
+				</div> 
+			</li>
+		</ul>
+		
+	</div>
+
+	<!-- The rest of the body -->
+	<div class="body">
+		<div class="nav">
+			<button id="reg" class="nav-btn"><a style="text-decoration: none" href="{{url}}/registration">Registration</a></button>
+			<button id="log" class="nav-btn"><a style="text-decoration: none; color: black" href="{{url}}/login">Login</a></button>
+		</div>	
+		<div class="content">
+			{% block content %}
+			{% endblock %}
+		</div>	
+		<div class="footer">
+			<hr style="border: none; border-bottom: 1px #343434 solid;">
+		</div>
+	</div>
+</body>
+</html>

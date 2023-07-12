@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!-- {% load static %} -->
+<html lang="en">
+<head>
+
+	<!-- Meta tags -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Style tags -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="base.css">
+
+	<!-- Kit for icons -->
+	<script src="https://kit.fontawesome.com/8cc093b5bf.js" crossorigin="anonymous"></script>
+
+	<!-- Title -->
+	<title>Spotify</title>
+</head>
+<style>
+
+/* Style the form */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath fill='%23000' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E") no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+  padding-right: 25px;
+}
+
+button[type="submit"] {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+a button[type="submit"] {
+  background-color: #ccc;
+  color: black;
+}
+
+/* Style the error message */
+p {
+  color: red;
+}
+  marg#month option {
+  color: navy;
+}
+{min-top: 5px;
+  font-size: 14px;
+}
+
+/* Style the footer */
+.footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Style the horizontal rule */
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+#month option {
+  color: navy;
+}
+#gender option {
+  color: navy;
+}
+h1 {
+  text-align: center;
+}
+
+
+	</style>
+<body>
+	<!-- The rest of the body -->
+	<div class="body">
+		<body>
+    <h1>Изменение профиля</h1>
+    <form method="post" action="{{url}}/Edit">
+        {% csrf_token %}
+        <div>
+            <label>Электронная почта</label>
+            <input type="email" name="e_name" value="{{user.email}}" placeholder="Введите электронную почту">
+        </div>
+        <div>
+        <label>Пароль</label>
+        <input type="password" name="password" value="{{user.password}}" placeholder="Введите пароль">
+        </div>
+
+        <div>
+        <h5>Ваша дата рождения</h5>
+<!--        <input type="date" name="bırthday" placeholder="">-->
+            <h6 for="day">День</h6>
+            <input type="text" aria-invalid="true" id="day" inputmode="numeric" maxlength="2" name="day" pattern="((0?[1-9])|([12][0-9])|(3[01]))" placeholder="ДД">
+            <p>{{day_error}}</p>
+
+            <h6 for="month">Месяц</h6>
+            <select name="month" id="month">
+            <option selected value="777">Месяц</option>
+            <option value="01">Январь</option>
+            <option value="02">Февраль</option>
+            <option value="03">Март</option>
+            <option value="04">Апрель</option>
+            <option value="05">Май</option>
+            <option value="06">Июнь</option>
+            <option value="07">Июль</option>
+            <option value="08">Август</option>
+            <option value="09">Сентябрь</option>
+            <option value="10">Октябрь</option>
+            <option value="11">Ноябрь</option>
+            <option value="12">Декабрь</option>
+            </select>
+<!--            id="year" inputmode="numeric" maxlength="4" name="year" pattern="(19[0-9]{2})|(200)[0-9]"-->
+            <h6 for="year">Год</h6>
+            <input type="text" name="year"  placeholder="ГГ">
+        </div>
+        <div>
+
+        <h6 for="gender">Пол</h6>
+        <select name="gender" id="gender">
+            <option selected value="Man">Мужчина</option>
+            <option value="Any">Другое</option>
+            <option value="Women">Женщина</option>
+            <option value="Nobody">Не хочу отвечать</option>
+        </select>
+        </div>
+
+        <div>
+            <a href=""><button type="submit">Отмена</button></a>
+            <button type="submit">Сохранить данные</button>
+        </div>
+    </form>
+</body>
+	</div>
+	<div class="footer">
+		<!-- <hr style="border: none; border-bottom: 1px gray solid; margin: 0; widows: 80%;"> -->
+	</div>
+</body>
+</html>
